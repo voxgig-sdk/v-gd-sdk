@@ -1,0 +1,85 @@
+# Entity: url_shortening
+
+main: kit: entity: url_shortening: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "shorturl"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "status"
+      req: false
+      type: "`$STRING`"
+    }
+  ]
+
+  name: "url_shortening"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            query: [
+              {
+                example: "json"
+                kind: "query"
+                name: "format"
+                orig: "format"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: 0
+                kind: "query"
+                name: "logstat"
+                orig: "logstat"
+                reqd: false
+                type: "`$INTEGER`"
+              }
+              {
+                kind: "query"
+                name: "shorturl"
+                orig: "shorturl"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: "https://www.example.com/very/long/url/path"
+                kind: "query"
+                name: "url"
+                orig: "url"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/create.php"
+          parts: [
+            "create.php"
+          ]
+          select: {
+            exist: [
+              "format"
+              "logstat"
+              "shorturl"
+              "url"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

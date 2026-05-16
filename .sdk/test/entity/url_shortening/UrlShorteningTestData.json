@@ -1,0 +1,29 @@
+{
+  "existing": {
+    "url_shortening": {
+      "URL_SHORTENING00": {
+        "shorturl": "s14",
+        "status": "s15",
+        "id": "URL_SHORTENING00"
+      },
+      "URL_SHORTENING01": {
+        "shorturl": "s28",
+        "status": "s29",
+        "id": "URL_SHORTENING01"
+      },
+      "URL_SHORTENING02": {
+        "shorturl": "s3c",
+        "status": "s3d",
+        "id": "URL_SHORTENING02"
+      }
+    }
+  },
+  "new": {
+    "url_shortening": {
+      "url_shortening_ref01": {
+        "shorturl": "s50",
+        "status": "s51"
+      }
+    }
+  }
+}

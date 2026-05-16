@@ -1,0 +1,23 @@
+# API Information
+
+
+main: {
+  kit: {
+    info: {
+      contact: {
+        url: "https://github.com/l0v3m0n3y/v_gd"
+      }
+      description: "The V.gd API provides a simple interface for shortening URLs through its JavaScript library. It allows developers to create custom short links, track their usage, and integrate URL shortening capabilities into their applications."
+      servers: [
+        {
+          description: "V.gd URL Shortener Service"
+          url: "https://v.gd"
+        }
+      ]
+      title: "V.gd API"
+      version: "1.0.0"
+    }
+  }
+}
+
+}

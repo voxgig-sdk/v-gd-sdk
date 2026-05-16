@@ -1,0 +1,232 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "V.gd API",
+    "description": "The V.gd API provides a simple interface for shortening URLs through its JavaScript library. It allows developers to create custom short links, track their usage, and integrate URL shortening capabilities into their applications.",
+    "version": "1.0.0",
+    "contact": {
+      "url": "https://github.com/l0v3m0n3y/v_gd"
+    }
+  },
+  "externalDocs": {
+    "description": "GitHub Repository Documentation",
+    "url": "https://github.com/l0v3m0n3y/v_gd"
+  },
+  "servers": [
+    {
+      "url": "https://v.gd",
+      "description": "V.gd URL Shortener Service"
+    }
+  ],
+  "paths": {
+    "/create.php": {
+      "get": {
+        "summary": "Shorten URL",
+        "description": "Creates a shortened URL from a long URL using the V.gd service",
+        "operationId": "shortenUrl",
+        "tags": [
+          "URL Shortening"
+        ],
+        "parameters": [
+          {
+            "name": "format",
+            "in": "query",
+            "description": "Response format (json, xml, or simple)",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "json",
+                "xml",
+                "simple"
+              ],
+              "default": "json"
+            }
+          },
+          {
+            "name": "url",
+            "in": "query",
+            "description": "The long URL to be shortened",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uri"
+            },
+            "example": "https://www.example.com/very/long/url/path"
+          },
+          {
+            "name": "logstats",
+            "in": "query",
+            "description": "Enable statistics tracking for the shortened URL",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "enum": [
+                0,
+                1
+              ],
+              "default": 0
+            }
+          },
+          {
+            "name": "shorturl",
+            "in": "query",
+            "description": "Custom short URL suffix (if available)",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful URL shortening response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "description": "Status of the request",
+                      "example": "success"
+                    },
+                    "shorturl": {
+                      "type": "string",
+                      "format": "uri",
+                      "description": "The shortened URL",
+                      "example": "https://v.gd/abc123"
+                    }
+                  }
+                },
+                "examples": {
+                  "success": {
+                    "value": {
+                      "status": "success",
+                      "shorturl": "https://v.gd/abc123"
+                    }
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "object",
+                  "xml": {
+                    "name": "response"
+                  },
+                  "properties": {
+                    "status": {
+                      "type": "string"
+                    },
+                    "shorturl": {
+                      "type": "string"
+                    }
+                  }
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "type": "string",
+                  "description": "The shortened URL in plain text format",
+                  "example": "https://v.gd/abc123"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request - Invalid URL or parameters",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "example": "error"
+                    },
+                    "errorcode": {
+                      "type": "integer",
+                      "example": 1
+                    },
+                    "errormessage": {
+                      "type": "string",
+                      "example": "Invalid URL provided"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "example": "error"
+                    },
+                    "errorcode": {
+                      "type": "integer",
+                      "example": 2
+                    },
+                    "errormessage": {
+                      "type": "string",
+                      "example": "Service temporarily unavailable"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "SuccessResponse": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "description": "Status of the request",
+            "example": "success"
+          },
+          "shorturl": {
+            "type": "string",
+            "format": "uri",
+            "description": "The shortened URL",
+            "example": "https://v.gd/abc123"
+          }
+        }
+      },
+      "ErrorResponse": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "description": "Error status",
+            "example": "error"
+          },
+          "errorcode": {
+            "type": "integer",
+            "description": "Error code for debugging"
+          },
+          "errormessage": {
+            "type": "string",
+            "description": "Human-readable error message"
+          }
+        }
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "URL Shortening",
+      "description": "Operations for shortening URLs and managing short links"
+    }
+  ]
+}
