@@ -1,10 +1,10 @@
 package voxgigvgdsdk
 
 import (
-	"github.com/voxgig-sdk/v-gd-sdk/core"
-	"github.com/voxgig-sdk/v-gd-sdk/entity"
-	"github.com/voxgig-sdk/v-gd-sdk/feature"
-	_ "github.com/voxgig-sdk/v-gd-sdk/utility"
+	"github.com/voxgig-sdk/v-gd-sdk/go/core"
+	"github.com/voxgig-sdk/v-gd-sdk/go/entity"
+	"github.com/voxgig-sdk/v-gd-sdk/go/feature"
+	_ "github.com/voxgig-sdk/v-gd-sdk/go/utility"
 )
 
 // Type aliases preserve external API.

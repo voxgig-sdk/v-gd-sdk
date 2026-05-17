@@ -1,9 +1,9 @@
 package entity
 
 import (
-	"github.com/voxgig-sdk/v-gd-sdk/core"
+	"github.com/voxgig-sdk/v-gd-sdk/go/core"
 
-	vs "github.com/voxgig/struct"
+	vs "github.com/voxgig-sdk/v-gd-sdk/go/utility/struct"
 )
 
 type UrlShorteningEntity struct {

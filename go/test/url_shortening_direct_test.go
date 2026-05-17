@@ -6,8 +6,8 @@ import (
 	"strings"
 	"testing"
 
-	sdk "github.com/voxgig-sdk/v-gd-sdk"
-	"github.com/voxgig-sdk/v-gd-sdk/core"
+	sdk "github.com/voxgig-sdk/v-gd-sdk/go"
+	"github.com/voxgig-sdk/v-gd-sdk/go/core"
 )
 
 func TestUrlShorteningDirect(t *testing.T) {
