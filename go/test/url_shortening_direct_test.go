@@ -105,14 +105,12 @@ func url_shorteningDirectSetup(mockres any) *url_shorteningDirectSetupResult {
 	env := envOverride(map[string]any{
 		"VGD_TEST_URL_SHORTENING_ENTID": map[string]any{},
 		"VGD_TEST_LIVE":    "FALSE",
-		"VGD_APIKEY":       "NONE",
 	})
 
 	live := env["VGD_TEST_LIVE"] == "TRUE"
 
 	if live {
 		mergedOpts := map[string]any{
-			"apikey": env["VGD_APIKEY"],
 		}
 		client := sdk.NewVGdSDK(mergedOpts)
 

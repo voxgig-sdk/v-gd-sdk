@@ -23,12 +23,9 @@ loading a specific record.
 ### 1. Create a client
 
 ```python
-import os
 from vgd_sdk import VGdSDK
 
-client = VGdSDK({
-    "apikey": os.environ.get("V-GD_APIKEY"),
-})
+client = VGdSDK({})
 ```
 
 ### 3. Load a urlshortening
@@ -117,7 +114,6 @@ Create a `.env.local` file at the project root:
 
 ```
 V-GD_TEST_LIVE=TRUE
-V-GD_APIKEY=<your-key>
 ```
 
 Then run:
@@ -141,7 +137,6 @@ Creates a new SDK client.
 
 | Option | Type | Description |
 | --- | --- | --- |
-| `apikey` | `str` | API key for authentication. |
 | `base` | `str` | Base URL of the API server. |
 | `prefix` | `str` | URL path prefix prepended to all requests. |
 | `suffix` | `str` | URL path suffix appended to all requests. |

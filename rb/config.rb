@@ -15,9 +15,6 @@ module VGdConfig
       },
       "options" => {
         "base" => "https://v.gd",
-        "auth" => {
-          "prefix" => "Bearer",
-        },
         "headers" => {
           "content-type" => "application/json",
         },

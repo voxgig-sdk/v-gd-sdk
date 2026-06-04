@@ -17,9 +17,7 @@ loading a specific record.
 ```ts
 import { VGdSDK } from 'v-gd'
 
-const client = new VGdSDK({
-  apikey: process.env.V-GD_APIKEY,
-})
+const client = new VGdSDK({})
 ```
 
 ### 3. Load a urlshortening
@@ -82,7 +80,7 @@ const result = await client.Planet().load({ id: 'test01' })
 You can also use the instance method:
 
 ```ts
-const client = new VGdSDK({ apikey: '...' })
+const client = new VGdSDK()
 const testClient = client.tester()
 ```
 
@@ -118,7 +116,6 @@ const logger = {
 }
 
 const client = new VGdSDK({
-  apikey: '...',
   extend: [logger],
 })
 ```
@@ -129,7 +126,6 @@ Create a `.env.local` file at the project root:
 
 ```
 V-GD_TEST_LIVE=TRUE
-V-GD_APIKEY=<your-key>
 ```
 
 Then run:
@@ -147,7 +143,6 @@ cd ts && npm test
 
 ```ts
 new VGdSDK(options?: {
-  apikey?: string
   base?: string
   prefix?: string
   suffix?: string
@@ -158,7 +153,6 @@ new VGdSDK(options?: {
 
 | Option | Type | Description |
 | --- | --- | --- |
-| `apikey` | `string` | API key for authentication. |
 | `base` | `string` | Base URL of the API server. |
 | `prefix` | `string` | URL path prefix prepended to all requests. |
 | `suffix` | `string` | URL path suffix appended to all requests. |

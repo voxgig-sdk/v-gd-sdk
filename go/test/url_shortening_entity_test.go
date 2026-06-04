@@ -117,7 +117,6 @@ func url_shorteningBasicSetup(extra map[string]any) *entityTestSetup {
 		"VGD_TEST_URL_SHORTENING_ENTID": idmap,
 		"VGD_TEST_LIVE":      "FALSE",
 		"VGD_TEST_EXPLAIN":   "FALSE",
-		"VGD_APIKEY":         "NONE",
 	})
 
 	idmapResolved := core.ToMapAny(env["VGD_TEST_URL_SHORTENING_ENTID"])
@@ -128,7 +127,6 @@ func url_shorteningBasicSetup(extra map[string]any) *entityTestSetup {
 	if env["VGD_TEST_LIVE"] == "TRUE" {
 		mergedOpts := vs.Merge([]any{
 			map[string]any{
-				"apikey": env["VGD_APIKEY"],
 			},
 			extra,
 		})

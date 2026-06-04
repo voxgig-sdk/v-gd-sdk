@@ -16,7 +16,17 @@
           }
         ],
         "title": "V.gd API",
-        "version": "1.0.0"
+        "version": "1.0.0",
+        "tagline": "Shorten long URLs into compact v.gd links via a no-auth HTTP API",
+        "homepage": "https://v.gd",
+        "docs_url": "https://v.gd/developers.php",
+        "license_short": "Free public service; usage governed by v.gd Terms & Conditions and rate limits.",
+        "license_md": "- Free to use without an API key or account\n- Subject to the [v.gd Terms & Conditions](https://v.gd/terms.php) and [Spam Policy](https://v.gd/spam.php)\n- Per-IP rate limiting applies; abusive usage may be blocked\n- Third-party client libraries (Python, Node.js, .NET, Go) listed on the developers page are not endorsed or tested by v.gd",
+        "about_md": "[v.gd](https://v.gd) is a URL shortener that turns long links into short `v.gd/...` redirects. It is run by the same operators as is.gd and positions itself as \"the ethical URL shortener\" — no interstitials, no tracking beyond optional opt-in click stats. The site reports having shortened over 90 million URLs serving more than 3 billion redirects.\n\nWhat you get from the API:\n\n- Create a short link from any long URL\n- Optionally request a custom short slug (5–30 alphanumeric characters plus underscores)\n- Choose response format: `web` (HTML), `simple` (plain text), `xml`, or `json` (with optional JSONP callback)\n- Optionally enable click-statistics logging on a per-link basis\n- Look up the original long URL behind an existing short code\n\nOperational notes: requests can be made via HTTPS `GET` or `POST` and no authentication is required. The service enforces per-IP rate limits and caps clients at 5 concurrent connections; enabling stats logging counts double against rate limits. Errors are returned with numeric codes (1 = bad source URL, 2 = bad custom slug, 3 = rate limited, 4 = other). Clients should cache shortened URLs and back off for roughly a minute after hitting a rate-limit error.",
+        "entity_desc": {
+          "url_shortening": "Creating short `v.gd/...` codes for long URLs and resolving them back to their originals, via `create.php` (shorten) and the lookup endpoint documented on v.gd."
+        },
+        "auth": false
       },
       "config": {
         "auth": {
@@ -24,7 +34,15 @@
         },
         "headers": {
           "content-type": "application/json"
-        }
+        },
+        "docs_order": [
+          "ts",
+          "py",
+          "php",
+          "go",
+          "rb",
+          "lua"
+        ]
       },
       "entity": {
         "url_shortening": {
