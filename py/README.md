@@ -1,6 +1,11 @@
 # VGd Python SDK
 
-The Python SDK for the VGd API. Provides an entity-oriented interface following Pythonic conventions.
+
+
+The Python SDK for the VGd API — an entity-oriented client following Pythonic conventions.
+
+> Other languages, the CLI, and MCP server live alongside this one — see
+> the [top-level README](../README.md).
 
 
 ## Install
@@ -23,15 +28,18 @@ loading a specific record.
 ### 1. Create a client
 
 ```python
+import os
 from vgd_sdk import VGdSDK
 
-client = VGdSDK({})
+client = VGdSDK({
+    "apikey": os.environ.get("V-GD_APIKEY"),
+})
 ```
 
 ### 3. Load a urlshortening
 
 ```python
-result, err = client.UrlShortening(None).load({"id": "example_id"}, None)
+result, err = client.UrlShortening().load({"id": "example_id"})
 if err:
     raise Exception(err)
 print(result)
@@ -79,11 +87,9 @@ print(fetchdef["headers"])
 Create a mock client for unit testing — no server required:
 
 ```python
-client = VGdSDK.test(None, None)
+client = VGdSDK.test()
 
-result, err = client.VGd(None).load(
-    {"id": "test01"}, None
-)
+result, err = client.VGd().load({"id": "test01"})
 # result contains mock response data
 ```
 
@@ -114,6 +120,7 @@ Create a `.env.local` file at the project root:
 
 ```
 V-GD_TEST_LIVE=TRUE
+V-GD_APIKEY=<your-key>
 ```
 
 Then run:
@@ -137,6 +144,7 @@ Creates a new SDK client.
 
 | Option | Type | Description |
 | --- | --- | --- |
+| `apikey` | `str` | API key for authentication. |
 | `base` | `str` | Base URL of the API server. |
 | `prefix` | `str` | URL path prefix prepended to all requests. |
 | `suffix` | `str` | URL path suffix appended to all requests. |

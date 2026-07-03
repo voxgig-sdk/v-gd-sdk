@@ -82,6 +82,7 @@ def url_shortening_basic_setup(extra)
     "VGD_TEST_URL_SHORTENING_ENTID" => idmap,
     "VGD_TEST_LIVE" => "FALSE",
     "VGD_TEST_EXPLAIN" => "FALSE",
+    "VGD_APIKEY" => "NONE",
   })
 
   idmap_resolved = Helpers.to_map(
@@ -93,6 +94,7 @@ def url_shortening_basic_setup(extra)
   if env["VGD_TEST_LIVE"] == "TRUE"
     merged_opts = Vs.merge([
       {
+        "apikey" => env["VGD_APIKEY"],
       },
       extra || {},
     ])

@@ -1,22 +1,8 @@
 # VGd SDK
 
-Shorten long URLs into compact v.gd links via a no-auth HTTP API
+V.gd API client, generated from the OpenAPI spec.
 
 > TypeScript, Python, PHP, Golang, Ruby, Lua SDKs, a CLI, an interactive REPL, and an MCP server for AI agents — all generated from one OpenAPI spec by [@voxgig/sdkgen](https://github.com/voxgig/sdkgen).
-
-## About V.gd API
-
-[v.gd](https://v.gd) is a URL shortener that turns long links into short `v.gd/...` redirects. It is run by the same operators as is.gd and positions itself as "the ethical URL shortener" — no interstitials, no tracking beyond optional opt-in click stats. The site reports having shortened over 90 million URLs serving more than 3 billion redirects.
-
-What you get from the API:
-
-- Create a short link from any long URL
-- Optionally request a custom short slug (5–30 alphanumeric characters plus underscores)
-- Choose response format: `web` (HTML), `simple` (plain text), `xml`, or `json` (with optional JSONP callback)
-- Optionally enable click-statistics logging on a per-link basis
-- Look up the original long URL behind an existing short code
-
-Operational notes: requests can be made via HTTPS `GET` or `POST` and no authentication is required. The service enforces per-IP rate limits and caps clients at 5 concurrent connections; enabling stats logging counts double against rate limits. Errors are returned with numeric codes (1 = bad source URL, 2 = bad custom slug, 3 = rate limited, 4 = other). Clients should cache shortened URLs and back off for roughly a minute after hitting a rate-limit error.
 
 ## Try it
 
@@ -50,27 +36,31 @@ gem install v-gd-sdk
 luarocks install v-gd-sdk
 ```
 
-## 30-second quickstart
+## Quickstart
 
 ### TypeScript
 
 ```ts
 import { VGdSDK } from 'v-gd'
 
-const client = new VGdSDK({})
+const client = new VGdSDK({
+  apikey: process.env.V-GD_APIKEY,
+})
 
+// Load urlshortening data
+const urlshortening = await client.UrlShortening().load({})
+console.log(urlshortening.data)
 ```
 
-See the [TypeScript README](ts/README.md) for the
-full guide, or scroll down for the same example in other languages.
+See the [TypeScript README](ts/README.md) for the full guide.
 
-## What's in the box
+## Surfaces
 
-| Surface | Use it for | Path |
-| --- | --- | --- |
-| **SDK** (TypeScript, Python, PHP, Golang, Ruby, Lua) | App integration | `ts/` `py/` `php/` `go/` `rb/` `lua/` |
-| **CLI** | Scripts, CI, ops, one-off API calls | `go-cli/` |
-| **MCP server** | AI agents (Claude, Cursor, Cline) | `go-mcp/` |
+| Surface | Path |
+| --- | --- |
+| **SDK** (TypeScript, Python, PHP, Golang, Ruby, Lua) | `ts/` `py/` `php/` `go/` `rb/` `lua/` |
+| **CLI** | `go-cli/` |
+| **MCP server** | `go-mcp/` |
 
 ## Use it from an AI agent (MCP)
 
@@ -100,7 +90,7 @@ The API exposes one entity:
 
 | Entity | Description | API path |
 | --- | --- | --- |
-| **UrlShortening** | Creating short `v.gd/...` codes for long URLs and resolving them back to their originals, via `create.php` (shorten) and the lookup endpoint documented on v.gd. | `/create.php` |
+| **UrlShortening** |  | `/create.php` |
 
 Each entity supports the following operations where available: **load**,
 **list**, **create**, **update**, and **remove**.
@@ -110,15 +100,17 @@ Each entity supports the following operations where available: **load**,
 ### Python
 
 ```python
+import os
 from vgd_sdk import VGdSDK
 
-client = VGdSDK({})
+client = VGdSDK({
+    "apikey": os.environ.get("V-GD_APIKEY"),
+})
 
 
 # Load a specific urlshortening
-urlshortening, err = client.UrlShortening(None).load(
-    {"id": "example_id"}, None
-)
+urlshortening, err = client.UrlShortening().load({"id": "example_id"})
+print(urlshortening)
 ```
 
 ### PHP
@@ -127,13 +119,14 @@ urlshortening, err = client.UrlShortening(None).load(
 <?php
 require_once 'vgd_sdk.php';
 
-$client = new VGdSDK([]);
+$client = new VGdSDK([
+    "apikey" => getenv("V-GD_APIKEY"),
+]);
 
 
 // Load a specific urlshortening
-[$urlshortening, $err] = $client->UrlShortening(null)->load(
-    ["id" => "example_id"], null
-);
+[$urlshortening, $err] = $client->UrlShortening()->load(["id" => "example_id"]);
+print_r($urlshortening);
 ```
 
 ### Golang
@@ -141,8 +134,13 @@ $client = new VGdSDK([]);
 ```go
 import sdk "github.com/voxgig-sdk/v-gd-sdk/go"
 
-client := sdk.NewVGdSDK(map[string]any{})
+client := sdk.NewVGdSDK(map[string]any{
+    "apikey": os.Getenv("V-GD_APIKEY"),
+})
 
+// Load urlshortening data
+urlshortening, err := client.UrlShortening(nil).Load(map[string]any{}, nil)
+fmt.Println(urlshortening)
 ```
 
 ### Ruby
@@ -150,13 +148,14 @@ client := sdk.NewVGdSDK(map[string]any{})
 ```ruby
 require_relative "VGd_sdk"
 
-client = VGdSDK.new({})
+client = VGdSDK.new({
+  "apikey" => ENV["V-GD_APIKEY"],
+})
 
 
 # Load a specific urlshortening
-urlshortening, err = client.UrlShortening(nil).load(
-  { "id" => "example_id" }, nil
-)
+urlshortening, err = client.UrlShortening().load({ "id" => "example_id" })
+puts urlshortening
 ```
 
 ### Lua
@@ -164,13 +163,14 @@ urlshortening, err = client.UrlShortening(nil).load(
 ```lua
 local sdk = require("v-gd_sdk")
 
-local client = sdk.new({})
+local client = sdk.new({
+  apikey = os.getenv("V-GD_APIKEY"),
+})
 
 
 -- Load a specific urlshortening
-local urlshortening, err = client:UrlShortening(nil):load(
-  { id = "example_id" }, nil
-)
+local urlshortening, err = client:UrlShortening():load({ id = "example_id" })
+print(urlshortening)
 ```
 
 ## Unit testing in offline mode
@@ -189,25 +189,21 @@ const result = await client.UrlShortening().load({ id: 'test01' })
 ### Python
 
 ```python
-client = VGdSDK.test(None, None)
-result, err = client.UrlShortening(None).load(
-    {"id": "test01"}, None
-)
+client = VGdSDK.test()
+result, err = client.UrlShortening().load({"id": "test01"})
 ```
 
 ### PHP
 
 ```php
-$client = VGdSDK::test(null, null);
-[$result, $err] = $client->UrlShortening(null)->load(
-    ["id" => "test01"], null
-);
+$client = VGdSDK::test();
+[$result, $err] = $client->UrlShortening()->load(["id" => "test01"]);
 ```
 
 ### Golang
 
 ```go
-client := sdk.TestSDK(nil, nil)
+client := sdk.Test()
 result, err := client.UrlShortening(nil).Load(
     map[string]any{"id": "test01"}, nil,
 )
@@ -216,19 +212,15 @@ result, err := client.UrlShortening(nil).Load(
 ### Ruby
 
 ```ruby
-client = VGdSDK.test(nil, nil)
-result, err = client.UrlShortening(nil).load(
-  { "id" => "test01" }, nil
-)
+client = VGdSDK.test
+result, err = client.UrlShortening().load({ "id" => "test01" })
 ```
 
 ### Lua
 
 ```lua
-local client = sdk.test(nil, nil)
-local result, err = client:UrlShortening(nil):load(
-  { id = "test01" }, nil
-)
+local client = sdk.test()
+local result, err = client:UrlShortening():load({ id = "test01" })
 ```
 
 ## How it works
@@ -332,16 +324,6 @@ local result, err = client:direct({
 - [Golang](go/README.md)
 - [Ruby](rb/README.md)
 - [Lua](lua/README.md)
-
-## Using the V.gd API
-
-- Upstream: [https://v.gd](https://v.gd)
-- API docs: [https://v.gd/developers.php](https://v.gd/developers.php)
-
-- Free to use without an API key or account
-- Subject to the [v.gd Terms & Conditions](https://v.gd/terms.php) and [Spam Policy](https://v.gd/spam.php)
-- Per-IP rate limiting applies; abusive usage may be blocked
-- Third-party client libraries (Python, Node.js, .NET, Go) listed on the developers page are not endorsed or tested by v.gd
 
 ---
 
