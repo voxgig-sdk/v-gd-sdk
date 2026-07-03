@@ -10,13 +10,13 @@ The Ruby SDK for the VGd API — an entity-oriented client using idiomatic Ruby 
 
 ## Install
 ```bash
-gem install v-gd-sdk
+gem install voxgig-sdk-v-gd
 ```
 
 Or add to your `Gemfile`:
 
 ```ruby
-gem "v-gd-sdk"
+gem "voxgig-sdk-v-gd"
 ```
 
 Then run:

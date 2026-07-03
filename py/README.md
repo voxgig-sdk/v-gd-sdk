@@ -10,7 +10,7 @@ The Python SDK for the VGd API — an entity-oriented client following Pythonic 
 
 ## Install
 ```bash
-pip install v-gd-sdk
+pip install voxgig-sdk-v-gd
 ```
 
 Or install from source:

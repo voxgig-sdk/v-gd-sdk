@@ -10,7 +10,7 @@ The Lua SDK for the VGd API — an entity-oriented client using Lua conventions.
 
 ## Install
 ```bash
-luarocks install v-gd-sdk
+luarocks install voxgig-sdk-v-gd
 ```
 
 If the module is not yet published, add the source directory to

@@ -10,7 +10,7 @@ The PHP SDK for the VGd API — an entity-oriented client using PHP conventions.
 
 ## Install
 ```bash
-composer require voxgig/v-gd-sdk
+composer require voxgig-sdk/v-gd
 ```
 
 

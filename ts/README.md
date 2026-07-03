@@ -10,7 +10,7 @@ The TypeScript SDK for the VGd API — a type-safe, entity-oriented client with 
 
 ## Install
 ```bash
-npm install v-gd
+npm install @voxgig-sdk/v-gd
 ```
 ## Tutorial: your first API call
 

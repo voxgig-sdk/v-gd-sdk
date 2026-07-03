@@ -8,12 +8,14 @@ source = {
   dir = "v-gd-sdk/lua"
 }
 description = {
-  summary = "VGd SDK for Lua",
-  license = "MIT"
+  summary = "Unofficial generated Lua SDK for the V.gd public API. Not affiliated with or endorsed by the upstream API provider.",
+  homepage = "https://github.com/voxgig-sdk/v-gd-sdk",
+  issues_url = "https://github.com/voxgig-sdk/v-gd-sdk/issues",
+  license = "MIT",
+  labels = { "voxgig", "sdk", "generated-sdk", "openapi", "api-client", "v-gd" }
 }
 dependencies = {
   "lua >= 5.3",
-  "dkjson >= 2.5",
   "dkjson >= 2.5",
 }
 build = {
