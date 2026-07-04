@@ -26,9 +26,9 @@ import { VGdSDK } from '@voxgig-sdk/v-gd'
 
 const client = new VGdSDK()
 
-// Load urlshortening data
-const urlshortening = await client.urlshortening.load({})
-console.log(urlshortening.data)
+// Load urlshortening data (returns a UrlShortening)
+const urlshortening = await client.UrlShortening().load()
+console.log(urlshortening)
 ```
 
 See the [TypeScript README](ts/README.md) for the full guide.
@@ -84,8 +84,8 @@ from vgd_sdk import VGdSDK
 client = VGdSDK()
 
 
-# Load a specific urlshortening
-urlshortening = client.urlshortening.load({"id": "example_id"})
+# Load a specific urlshortening (returns the record, raises on error)
+urlshortening = client.UrlShortening().load({"id": "example_id"})
 print(urlshortening)
 ```
 
@@ -98,8 +98,8 @@ require_once 'vgd_sdk.php';
 $client = new VGdSDK();
 
 
-// Load a specific urlshortening
-$urlshortening = $client->urlshortening()->load(["id" => "example_id"]);
+// Load a specific urlshortening (returns the bare record; throws on error)
+$urlshortening = $client->UrlShortening()->load(["id" => "example_id"]);
 print_r($urlshortening);
 ```
 
@@ -123,8 +123,8 @@ require_relative "VGd_sdk"
 client = VGdSDK.new
 
 
-# Load a specific urlshortening
-urlshortening = client.urlshortening.load({ "id" => "example_id" })
+# Load a specific urlshortening (returns the bare record; raises on error)
+urlshortening = client.UrlShortening.load({ "id" => "example_id" })
 puts urlshortening
 ```
 
@@ -137,7 +137,7 @@ local client = sdk.new()
 
 
 -- Load a specific urlshortening
-local urlshortening, err = client:urlshortening():load({ id = "example_id" })
+local urlshortening, err = client:UrlShortening():load({ id = "example_id" })
 print(urlshortening)
 ```
 
@@ -150,22 +150,27 @@ in-memory mock, so unit tests run offline.
 
 ```ts
 const client = VGdSDK.test()
-const result = await client.urlshortening.load({ id: 'test01' })
-// result.ok === true, result.data contains mock data
+const urlshortening = await client.UrlShortening().load({ id: 'test01' })
+// urlshortening is a bare UrlShortening populated with mock data
+console.log(urlshortening)
 ```
 
 ### Python
 
 ```python
 client = VGdSDK.test()
-result = client.urlshortening.load({"id": "test01"})
+urlshortening = client.UrlShortening().load({"id": "test01"})
+print(urlshortening)
 ```
 
 ### PHP
 
 ```php
-$client = VGdSDK::test();
-$result = $client->urlshortening()->load(["id" => "test01"]);
+// Seed fixture data so offline calls resolve without a live server.
+$client = VGdSDK::test([
+    "entity" => ["urlshortening" => ["test01" => ["id" => "test01"]]],
+]);
+$urlshortening = $client->UrlShortening()->load(["id" => "test01"]);
 ```
 
 ### Golang
@@ -180,15 +185,18 @@ result, err := client.UrlShortening(nil).Load(
 ### Ruby
 
 ```ruby
-client = VGdSDK.test
-result = client.urlshortening.load({ "id" => "test01" })
+# Seed fixture data so offline calls resolve without a live server.
+client = VGdSDK.test({
+  "entity" => { "urlshortening" => { "test01" => { "id" => "test01" } } },
+})
+urlshortening = client.UrlShortening.load({ "id" => "test01" })
 ```
 
 ### Lua
 
 ```lua
 local client = sdk.test()
-local result, err = client:urlshortening():load({ id = "test01" })
+local result, err = client:UrlShortening():load({ id = "test01" })
 ```
 
 ## How it works
@@ -236,6 +244,9 @@ const result = await client.direct({
   method: 'GET',
   params: { id: 'example' },
 })
+if (result instanceof Error) {
+  throw result
+}
 console.log(result.data)
 ```
 

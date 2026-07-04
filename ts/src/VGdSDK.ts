@@ -204,14 +204,7 @@ class VGdSDK {
 
 
 
-  _url_shortening?: UrlShorteningEntity
-
-  // Idiomatic facade: `client.url_shortening.list()` / `client.url_shortening.load({ id })`.
-  get url_shortening(): UrlShorteningEntity {
-    return (this._url_shortening ??= new UrlShorteningEntity(this, undefined))
-  }
-
-  /** @deprecated Use `client.url_shortening` instead. */
+  // Entity access: `client.UrlShortening().list()` / `client.UrlShortening().load({ id })`.
   UrlShortening(data?: any) {
     const self = this
     return new UrlShorteningEntity(self,data)

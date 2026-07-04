@@ -33,9 +33,10 @@ $client = new VGdSDK();
 
 ```php
 try {
-    $result = $client->urlshortening()->load(["id" => "example_id"]);
-    print_r($result);
-} catch (\Exception $err) {
+    // load() returns the bare UrlShortening record (throws on error).
+    $urlshortening = $client->UrlShortening()->load(["id" => "example_id"]);
+    print_r($urlshortening);
+} catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
 }
 ```
@@ -81,13 +82,17 @@ print_r($fetchdef["headers"]);
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required:
+Create a mock client for unit testing — no server required. Seed fixture
+data via the `entity` option so offline calls resolve without a live server:
 
 ```php
-$client = VGdSDK::test();
+$client = VGdSDK::test([
+    "entity" => ["urlshortening" => ["test01" => ["id" => "test01"]]],
+]);
 
-$result = $client->urlshortening()->load(["id" => "test01"]);
-// $result contains mock response data
+// load() returns the bare mock record (throws on error).
+$urlshortening = $client->UrlShortening()->load(["id" => "test01"]);
+print_r($urlshortening);
 ```
 
 ### Use a custom fetch function
@@ -166,7 +171,7 @@ Creates a test-mode client with mock transport. Both arguments may be `null`.
 | `get_utility` | `(): Utility` | Copy of the SDK utility object. |
 | `prepare` | `(array $fetchargs): array` | Build an HTTP request definition without sending. |
 | `direct` | `(array $fetchargs): array` | Build and send an HTTP request. |
-| `UrlShortening` | `($data): UrlShorteningEntity` | Create a UrlShortening entity instance. |
+| `UrlShortening` | `($data): UrlShorteningEntity` | Create an UrlShortening entity instance. |
 
 ### Entity interface
 
@@ -224,7 +229,7 @@ API path: `/create.php`
 
 ### UrlShortening
 
-Create an instance: `const url_shortening = client.url_shortening`
+Create an instance: `$url_shortening = $client->UrlShortening();`
 
 #### Operations
 
@@ -241,8 +246,9 @@ Create an instance: `const url_shortening = client.url_shortening`
 
 #### Example: Load
 
-```ts
-const url_shortening = await client.url_shortening.load({ id: 'url_shortening_id' })
+```php
+// load() returns the bare UrlShortening record (throws on error).
+$url_shortening = $client->UrlShortening()->load(["id" => "url_shortening_id"]);
 ```
 
 
@@ -317,7 +323,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```php
-$urlshortening = $client->urlshortening();
+$urlshortening = $client->UrlShortening();
 $urlshortening->load(["id" => "example_id"]);
 
 // $urlshortening->dataGet() now returns the loaded urlshortening data

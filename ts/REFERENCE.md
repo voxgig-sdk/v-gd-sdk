@@ -109,7 +109,7 @@ Alias for `VGdSDK.test()`.
 ## UrlShorteningEntity
 
 ```ts
-const url_shortening = client.url_shortening
+const url_shortening = client.UrlShortening()
 ```
 
 ### Fields
@@ -126,7 +126,7 @@ const url_shortening = client.url_shortening
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.url_shortening.load({ id: 'url_shortening_id' })
+const result = await client.UrlShortening().load({ id: 'url_shortening_id' })
 ```
 
 ### Common Methods

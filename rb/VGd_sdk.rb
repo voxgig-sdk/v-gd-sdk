@@ -208,13 +208,7 @@ class VGdSDK
   end
 
 
-  # Idiomatic facade: client.url_shortening.list / client.url_shortening.load({ "id" => ... })
-  def url_shortening
-    require_relative 'entity/url_shortening_entity'
-    @url_shortening ||= UrlShorteningEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.url_shortening instead.
+  # Canonical facade: client.UrlShortening.list / client.UrlShortening.load({ "id" => ... })
   def UrlShortening(data = nil)
     require_relative 'entity/url_shortening_entity'
     UrlShorteningEntity.new(self, data)

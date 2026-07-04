@@ -32,8 +32,9 @@ client = VGdSDK.new
 
 ```ruby
 begin
-  result = client.urlshortening.load({ "id" => "example_id" })
-  puts result
+  # load returns the bare UrlShortening record (raises on error).
+  urlshortening = client.UrlShortening.load({ "id" => "example_id" })
+  puts urlshortening
 rescue => err
   warn "load failed: #{err}"
 end
@@ -80,13 +81,17 @@ end
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required:
+Create a mock client for unit testing — no server required. Seed fixture
+data via the `entity` option so offline calls resolve without a live server:
 
 ```ruby
-client = VGdSDK.test
+client = VGdSDK.test({
+  "entity" => { "urlshortening" => { "test01" => { "id" => "test01" } } },
+})
 
-result = client.urlshortening.load({ "id" => "test01" })
-# result contains mock response data
+# load returns the bare mock record (raises on error).
+urlshortening = client.UrlShortening.load({ "id" => "test01" })
+puts urlshortening
 ```
 
 ### Use a custom fetch function
@@ -162,7 +167,7 @@ Creates a test-mode client with mock transport. Both arguments may be `nil`.
 | `get_utility` | `() -> Utility` | Copy of the SDK utility object. |
 | `prepare` | `(fetchargs) -> Hash` | Build an HTTP request definition without sending. Raises on error. |
 | `direct` | `(fetchargs) -> Hash` | Build and send an HTTP request. Returns a result hash (`result["ok"]`); does not raise. |
-| `UrlShortening` | `(data) -> UrlShorteningEntity` | Create a UrlShortening entity instance. |
+| `UrlShortening` | `(data) -> UrlShorteningEntity` | Create an UrlShortening entity instance. |
 
 ### Entity interface
 
@@ -219,7 +224,7 @@ API path: `/create.php`
 
 ### UrlShortening
 
-Create an instance: `const url_shortening = client.url_shortening`
+Create an instance: `url_shortening = client.UrlShortening`
 
 #### Operations
 
@@ -236,8 +241,9 @@ Create an instance: `const url_shortening = client.url_shortening`
 
 #### Example: Load
 
-```ts
-const url_shortening = await client.url_shortening.load({ id: 'url_shortening_id' })
+```ruby
+# load returns the bare UrlShortening record (raises on error).
+url_shortening = client.UrlShortening.load({ "id" => "url_shortening_id" })
 ```
 
 
@@ -312,7 +318,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```ruby
-urlshortening = client.urlshortening
+urlshortening = client.UrlShortening
 urlshortening.load({ "id" => "example_id" })
 
 # urlshortening.data_get now returns the loaded urlshortening data

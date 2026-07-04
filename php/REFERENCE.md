@@ -85,7 +85,7 @@ Prepare a fetch definition without sending the request. Returns the
 ## UrlShorteningEntity
 
 ```php
-$url_shortening = $client->url_shortening();
+$url_shortening = $client->UrlShortening();
 ```
 
 ### Fields
@@ -102,7 +102,7 @@ $url_shortening = $client->url_shortening();
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->url_shortening()->load(["id" => "url_shortening_id"]);
+$result = $client->UrlShortening()->load(["id" => "url_shortening_id"]);
 ```
 
 ### Common Methods

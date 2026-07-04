@@ -220,25 +220,15 @@ class VGdSDK:
         }
 
 
-    @property
-    def url_shortening(self):
-        """Idiomatic facade: client.url_shortening.list() / client.url_shortening.load({"id": ...})."""
-        from entity.url_shortening_entity import UrlShorteningEntity
-        cached = getattr(self, "_url_shortening", None)
-        if cached is None:
-            cached = UrlShorteningEntity(self, None)
-            self._url_shortening = cached
-        return cached
-
-    def UrlShortening(self, data=None):
-        # Deprecated: use client.url_shortening instead.
+    def UrlShortening(self, data=None) -> "UrlShorteningEntity":
+        """Entity factory: client.UrlShortening().list({}) / client.UrlShortening().load({"id": ...})."""
         from entity.url_shortening_entity import UrlShorteningEntity
         return UrlShorteningEntity(self, data)
 
 
 
     @classmethod
-    def test(cls, testopts=None, sdkopts=None):
+    def test(cls, testopts=None, sdkopts=None) -> "VGdSDK":
         if sdkopts is None:
             sdkopts = {}
         sdkopts = vs.clone(sdkopts)
@@ -258,3 +248,9 @@ class VGdSDK:
         sdk.mode = "test"
 
         return sdk
+
+
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from entity.url_shortening_entity import UrlShorteningEntity

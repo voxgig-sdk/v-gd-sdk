@@ -86,7 +86,7 @@ same parameters as `direct()`. Raises on error.
 ## UrlShorteningEntity
 
 ```ruby
-url_shortening = client.url_shortening
+url_shortening = client.UrlShortening
 ```
 
 ### Fields
@@ -103,7 +103,7 @@ url_shortening = client.url_shortening
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.url_shortening.load({ "id" => "url_shortening_id" })
+result = client.UrlShortening.load({ "id" => "url_shortening_id" })
 ```
 
 ### Common Methods

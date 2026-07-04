@@ -233,10 +233,10 @@ class VGdSDK
 
     private $_url_shortening = null;
 
-    // Idiomatic facade: $client->url_shortening()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias UrlShortening() (PHP method
-    // names are case-insensitive).
-    public function url_shortening($data = null)
+    // Canonical facade: $client->UrlShortening()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->url_shortening()
+    // resolves here too.
+    public function UrlShortening($data = null)
     {
         require_once __DIR__ . '/entity/url_shortening_entity.php';
         if ($data === null) {

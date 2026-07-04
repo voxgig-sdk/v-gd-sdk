@@ -83,7 +83,7 @@ same parameters as `direct()`.
 ## UrlShorteningEntity
 
 ```lua
-local url_shortening = client:url_shortening(nil)
+local url_shortening = client:UrlShortening(nil)
 ```
 
 ### Fields
@@ -100,7 +100,7 @@ local url_shortening = client:url_shortening(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:url_shortening():load({ id = "url_shortening_id" })
+local result, err = client:UrlShortening():load({ id = "url_shortening_id" })
 ```
 
 ### Common Methods

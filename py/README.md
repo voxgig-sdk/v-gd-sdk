@@ -33,10 +33,12 @@ client = VGdSDK()
 
 ### 3. Load an urlshortening
 
+`load()` returns the bare record (a `dict`) and raises on error.
+
 ```python
 try:
-    result = client.urlshortening.load({"id": "example_id"})
-    print(result)
+    urlshortening = client.UrlShortening().load({"id": "example_id"})
+    print(urlshortening)
 except Exception as err:
     print(f"load failed: {err}")
 ```
@@ -84,8 +86,9 @@ Create a mock client for unit testing — no server required:
 ```python
 client = VGdSDK.test()
 
-result = client.urlshortening.load({"id": "test01"})
-# result contains mock response data
+# Entity ops return the bare record and raise on error.
+urlshortening = client.UrlShortening().load({"id": "test01"})
+# urlshortening contains the mock response record
 ```
 
 ### Use a custom fetch function
@@ -161,7 +164,7 @@ Creates a test-mode client with mock transport. Both arguments may be `None`.
 | `get_utility` | `() -> Utility` | Copy of the SDK utility object. |
 | `prepare` | `(fetchargs) -> dict` | Build an HTTP request definition without sending. Raises on error. |
 | `direct` | `(fetchargs) -> dict` | Build and send an HTTP request. Returns a result dict (branch on `ok`). |
-| `UrlShortening` | `(data) -> UrlShorteningEntity` | Create a UrlShortening entity instance. |
+| `UrlShortening` | `(data) -> UrlShorteningEntity` | Create an UrlShortening entity instance. |
 
 ### Entity interface
 
@@ -219,7 +222,7 @@ API path: `/create.php`
 
 ### UrlShortening
 
-Create an instance: `const url_shortening = client.url_shortening`
+Create an instance: `url_shortening = client.UrlShortening()`
 
 #### Operations
 
@@ -236,8 +239,8 @@ Create an instance: `const url_shortening = client.url_shortening`
 
 #### Example: Load
 
-```ts
-const url_shortening = await client.url_shortening.load({ id: 'url_shortening_id' })
+```python
+url_shortening = client.UrlShortening().load({"id": "url_shortening_id"})
 ```
 
 
@@ -311,7 +314,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```python
-urlshortening = client.urlshortening
+urlshortening = client.UrlShortening()
 urlshortening.load({"id": "example_id"})
 
 # urlshortening.data_get() now returns the loaded urlshortening data
