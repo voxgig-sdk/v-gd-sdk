@@ -68,14 +68,12 @@ function url_shortening_direct_setup(mockres)
   local env = runner.env_override({
     ["VGD_TEST_URL_SHORTENING_ENTID"] = {},
     ["VGD_TEST_LIVE"] = "FALSE",
-    ["VGD_APIKEY"] = "NONE",
   })
 
   local live = env["VGD_TEST_LIVE"] == "TRUE"
 
   if live then
     local merged_opts = {
-      apikey = env["VGD_APIKEY"],
     }
     local client = sdk.new(merged_opts)
     return {

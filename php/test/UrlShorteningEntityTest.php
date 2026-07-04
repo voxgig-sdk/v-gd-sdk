@@ -49,8 +49,7 @@ class UrlShorteningEntityTest extends TestCase
         // LOAD
         $url_shortening_ref01_ent = $client->UrlShortening(null);
         $url_shortening_ref01_match_dt0 = [];
-        [$url_shortening_ref01_data_dt0_loaded, $err] = $url_shortening_ref01_ent->load($url_shortening_ref01_match_dt0, null);
-        $this->assertNull($err);
+        $url_shortening_ref01_data_dt0_loaded = $url_shortening_ref01_ent->load($url_shortening_ref01_match_dt0, null);
         $this->assertNotNull($url_shortening_ref01_data_dt0_loaded);
 
     }
@@ -85,7 +84,6 @@ function url_shortening_basic_setup($extra)
         "VGD_TEST_URL_SHORTENING_ENTID" => $idmap,
         "VGD_TEST_LIVE" => "FALSE",
         "VGD_TEST_EXPLAIN" => "FALSE",
-        "VGD_APIKEY" => "NONE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
@@ -97,7 +95,6 @@ function url_shortening_basic_setup($extra)
     if ($env["VGD_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
-                "apikey" => $env["VGD_APIKEY"],
             ],
             $extra ?? [],
         ]);

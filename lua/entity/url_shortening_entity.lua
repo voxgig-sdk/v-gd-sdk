@@ -79,6 +79,10 @@ end
 
 
 
+---@param reqmatch UrlShorteningLoadMatch
+---@param ctrl? table
+---@return UrlShortening
+---@return string? err
 function UrlShorteningEntity:load(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

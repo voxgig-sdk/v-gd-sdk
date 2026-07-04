@@ -49,8 +49,7 @@ class TestUrlShorteningEntity:
         # LOAD
         url_shortening_ref01_ent = client.UrlShortening(None)
         url_shortening_ref01_match_dt0 = {}
-        url_shortening_ref01_data_dt0_loaded, err = url_shortening_ref01_ent.load(url_shortening_ref01_match_dt0, None)
-        assert err is None
+        url_shortening_ref01_data_dt0_loaded = url_shortening_ref01_ent.load(url_shortening_ref01_match_dt0, None)
         assert url_shortening_ref01_data_dt0_loaded is not None
 
 
@@ -91,7 +90,6 @@ def _url_shortening_basic_setup(extra):
         "VGD_TEST_URL_SHORTENING_ENTID": idmap,
         "VGD_TEST_LIVE": "FALSE",
         "VGD_TEST_EXPLAIN": "FALSE",
-        "VGD_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -102,7 +100,6 @@ def _url_shortening_basic_setup(extra):
     if env.get("VGD_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
-                "apikey": env.get("VGD_APIKEY"),
             },
             extra or {},
         ])

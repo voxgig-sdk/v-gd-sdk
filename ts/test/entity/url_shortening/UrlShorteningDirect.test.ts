@@ -78,14 +78,12 @@ function directSetup(mockres?: any) {
   const env = envOverride({
     'VGD_TEST_URL_SHORTENING_ENTID': {},
     'VGD_TEST_LIVE': 'FALSE',
-    'VGD_APIKEY': 'NONE',
   })
 
   const live = 'TRUE' === env.VGD_TEST_LIVE
 
   if (live) {
     const client = new VGdSDK({
-      apikey: env.VGD_APIKEY,
     })
 
     let idmap: any = env['VGD_TEST_URL_SHORTENING_ENTID']

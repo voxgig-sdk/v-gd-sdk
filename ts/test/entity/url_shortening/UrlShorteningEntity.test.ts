@@ -113,7 +113,6 @@ function basicSetup(extra?: any) {
     'V_GD_TEST_URL_SHORTENING_ENTID': idmap,
     'V_GD_TEST_LIVE': 'FALSE',
     'V_GD_TEST_EXPLAIN': 'FALSE',
-    'V_GD_APIKEY': 'NONE',
   })
 
   idmap = env['V_GD_TEST_URL_SHORTENING_ENTID']
@@ -123,7 +122,6 @@ function basicSetup(extra?: any) {
   if (live) {
     client = new VGdSDK(merge([
       {
-        apikey: env.V_GD_APIKEY,
       },
       extra
     ]))

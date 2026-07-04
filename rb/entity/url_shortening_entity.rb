@@ -45,6 +45,7 @@ class UrlShorteningEntity
     end
   end
 
+  # @return [UrlShortening, Hash] the current UrlShortening data
   def data_get
     @_utility.feature_hook.call(@_entctx, "GetData")
     VoxgigStruct.clone(@_data)
@@ -57,12 +58,18 @@ class UrlShorteningEntity
     end
   end
 
+  # @return [Hash] the current match filter (any subset of UrlShortening fields)
   def match_get
     @_utility.feature_hook.call(@_entctx, "GetMatch")
     VoxgigStruct.clone(@_match)
   end
 
   
+  # Load a single UrlShortening.
+  #
+  # @param reqmatch [UrlShorteningLoadMatch, Hash, nil] match criteria (id/query fields)
+  # @param ctrl [Object, nil] optional per-call control
+  # @return [UrlShortening, Hash] the loaded UrlShortening; raises VGdError on failure
   def load(reqmatch, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({

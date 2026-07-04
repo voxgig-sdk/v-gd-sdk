@@ -244,6 +244,19 @@ end
 
 
 
+-- Idiomatic facade: client:url_shortening():list() / client:url_shortening():load({ id = ... })
+function VGdSDK:url_shortening(data)
+  local EntityMod = require("entity.url_shortening_entity")
+  if data == nil then
+    if self._url_shortening == nil then
+      self._url_shortening = EntityMod.new(self, nil)
+    end
+    return self._url_shortening
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:url_shortening() instead.
 function VGdSDK:UrlShortening(data)
   local EntityMod = require("entity.url_shortening_entity")
   return EntityMod.new(self, data)

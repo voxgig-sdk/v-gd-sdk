@@ -2,6 +2,8 @@
 
 import { UrlShorteningEntity } from './entity/UrlShorteningEntity'
 
+export type * from './VGdTypes'
+
 
 import { inspect } from 'node:util'
 
@@ -202,6 +204,14 @@ class VGdSDK {
 
 
 
+  _url_shortening?: UrlShorteningEntity
+
+  // Idiomatic facade: `client.url_shortening.list()` / `client.url_shortening.load({ id })`.
+  get url_shortening(): UrlShorteningEntity {
+    return (this._url_shortening ??= new UrlShorteningEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.url_shortening` instead. */
   UrlShortening(data?: any) {
     const self = this
     return new UrlShorteningEntity(self,data)

@@ -245,6 +245,9 @@ func (sdk *VGdSDK) Direct(fetchargs map[string]any) (map[string]any, error) {
 }
 
 
+// UrlShortening returns a UrlShortening entity bound to this client.
+// Idiomatic usage: client.UrlShortening(nil).List(nil, nil) or
+// client.UrlShortening(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *VGdSDK) UrlShortening(data map[string]any) VGdEntity {
 	return NewUrlShorteningEntityFunc(sdk, data)
 }

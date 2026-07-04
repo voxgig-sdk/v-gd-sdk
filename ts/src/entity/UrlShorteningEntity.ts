@@ -14,9 +14,13 @@ import type {
   Control,
 } from '../types'
 
+import type {
+  UrlShortening,
+  UrlShorteningLoadMatch,
+} from '../VGdTypes'
 
 // TODO: needs Entity superclass
-class UrlShorteningEntity extends VGdEntityBase {
+class UrlShorteningEntity extends VGdEntityBase<UrlShortening> {
 
   constructor(client: VGdSDK, entopts: any) {
     super(client, entopts)
@@ -32,7 +36,7 @@ class UrlShorteningEntity extends VGdEntityBase {
 
 
 
-  async load(this: any, reqmatch?: any, ctrl?: Control) {
+  async load(this: any, reqmatch?: UrlShorteningLoadMatch, ctrl?: Control): Promise<UrlShortening> {
 
     const utility = this._utility
 
@@ -136,7 +140,9 @@ class UrlShorteningEntity extends VGdEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<UrlShortening> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }

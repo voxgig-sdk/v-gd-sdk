@@ -42,8 +42,7 @@ class UrlShorteningEntityTest < Minitest::Test
     # LOAD
     url_shortening_ref01_ent = client.UrlShortening(nil)
     url_shortening_ref01_match_dt0 = {}
-    url_shortening_ref01_data_dt0_loaded, err = url_shortening_ref01_ent.load(url_shortening_ref01_match_dt0, nil)
-    assert_nil err
+    url_shortening_ref01_data_dt0_loaded = url_shortening_ref01_ent.load(url_shortening_ref01_match_dt0, nil)
     assert !url_shortening_ref01_data_dt0_loaded.nil?
 
   end
@@ -82,7 +81,6 @@ def url_shortening_basic_setup(extra)
     "VGD_TEST_URL_SHORTENING_ENTID" => idmap,
     "VGD_TEST_LIVE" => "FALSE",
     "VGD_TEST_EXPLAIN" => "FALSE",
-    "VGD_APIKEY" => "NONE",
   })
 
   idmap_resolved = Helpers.to_map(
@@ -94,7 +92,6 @@ def url_shortening_basic_setup(extra)
   if env["VGD_TEST_LIVE"] == "TRUE"
     merged_opts = Vs.merge([
       {
-        "apikey" => env["VGD_APIKEY"],
       },
       extra || {},
     ])
