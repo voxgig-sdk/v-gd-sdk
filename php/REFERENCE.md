@@ -8,7 +8,7 @@ Complete API reference for the VGd PHP SDK.
 ### Constructor
 
 ```php
-require_once __DIR__ . '/v-gd_sdk.php';
+require_once __DIR__ . '/vgd_sdk.php';
 
 $client = new VGdSDK($options);
 ```
@@ -45,11 +45,11 @@ $client = VGdSDK::test();
 
 Create a new `UrlShorteningEntity` instance. Pass `null` for no initial data.
 
-#### `optionsMap(): array`
+#### `options_map(): array`
 
 Return a deep copy of the current SDK options.
 
-#### `getUtility(): ProjectNameUtility`
+#### `get_utility(): VGdUtility`
 
 Return a copy of the SDK utility object.
 
@@ -92,8 +92,8 @@ $url_shortening = $client->UrlShortening();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `shorturl` | ``$STRING`` | No |  |
-| `status` | ``$STRING`` | No |  |
+| `shorturl` | `string` | No |  |
+| `status` | `string` | No |  |
 
 ### Operations
 
@@ -102,24 +102,24 @@ $url_shortening = $client->UrlShortening();
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->UrlShortening()->load(["id" => "url_shortening_id"]);
+$result = $client->UrlShortening()->load();
 ```
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -128,7 +128,7 @@ Set the entity match criteria.
 Create a new `UrlShorteningEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 

@@ -19,7 +19,7 @@ class UrlShortening
     public ?string $status = null;
 }
 
-/** Match filter for UrlShortening#load (any subset of UrlShortening fields). */
+/** Request payload for UrlShortening#load. */
 class UrlShorteningLoadMatch
 {
     public ?string $shorturl = null;

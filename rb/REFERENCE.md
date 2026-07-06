@@ -8,7 +8,7 @@ Complete API reference for the VGd Ruby SDK.
 ### Constructor
 
 ```ruby
-require_relative 'v-gd_sdk'
+require_relative 'VGd_sdk'
 
 client = VGdSDK.new(options)
 ```
@@ -93,8 +93,8 @@ url_shortening = client.UrlShortening
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `shorturl` | ``$STRING`` | No |  |
-| `status` | ``$STRING`` | No |  |
+| `shorturl` | `String` | No |  |
+| `status` | `String` | No |  |
 
 ### Operations
 
@@ -103,7 +103,7 @@ url_shortening = client.UrlShortening
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.UrlShortening.load({ "id" => "url_shortening_id" })
+result = client.UrlShortening.load()
 ```
 
 ### Common Methods

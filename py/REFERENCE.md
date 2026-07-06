@@ -8,7 +8,7 @@ Complete API reference for the VGd Python SDK.
 ### Constructor
 
 ```python
-from v-gd_sdk import VGdSDK
+from vgd_sdk import VGdSDK
 
 client = VGdSDK(options)
 ```
@@ -87,8 +87,8 @@ url_shortening = client.UrlShortening()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `shorturl` | ``$STRING`` | No |  |
-| `status` | ``$STRING`` | No |  |
+| `shorturl` | `str` | No |  |
+| `status` | `str` | No |  |
 
 ### Operations
 
@@ -97,7 +97,7 @@ url_shortening = client.UrlShortening()
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.UrlShortening().load({"id": "url_shortening_id"})
+result = client.UrlShortening().load()
 ```
 
 ### Common Methods

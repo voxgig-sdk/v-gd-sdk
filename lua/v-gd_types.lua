@@ -11,6 +11,8 @@
 ---@field status? string
 
 ---@class UrlShorteningLoadMatch
+---@field shorturl? string
+---@field status? string
 
 local M = {}
 

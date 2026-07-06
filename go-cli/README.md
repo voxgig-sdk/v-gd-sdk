@@ -16,7 +16,6 @@ go build -o v-gd-cli ./...
 
 ```sh
 # One-shot: arguments form a single AQL expression
-./v-gd-cli list url_shortening
 ./v-gd-cli load 1 url_shortening
 ./v-gd-cli load '{id:1}' url_shortening
 
@@ -28,9 +27,7 @@ go build -o v-gd-cli ./...
 
 | Word     | Signatures                                   | Description                |
 |----------|----------------------------------------------|----------------------------|
-| `list`   | `[entity]` · `[query entity]`                | List records               |
 | `load`   | `[entity]` · `[query entity]`                | Load a single record       |
-| `update` | `[entity]` · `[query entity]`                | Update a record            |
 
 `query` is either a Map (`{id:1}`) or a Scalar (`1`, treated as `{id:1}`).
 `entity` is one of the SDK's entity names (auto-quoted as an atom).

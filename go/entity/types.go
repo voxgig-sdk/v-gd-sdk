@@ -14,8 +14,7 @@ type UrlShortening struct {
 	Status *string `json:"status,omitempty"`
 }
 
-// UrlShorteningLoadMatch mirrors the url_shortening fields as an all-optional match
-// filter (Go analog of Partial<UrlShortening>).
+// UrlShorteningLoadMatch is the typed request payload for UrlShortening.LoadTyped.
 type UrlShorteningLoadMatch struct {
 	Shorturl *string `json:"shorturl,omitempty"`
 	Status *string `json:"status,omitempty"`

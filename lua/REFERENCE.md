@@ -90,8 +90,8 @@ local url_shortening = client:UrlShortening(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `shorturl` | ``$STRING`` | No |  |
-| `status` | ``$STRING`` | No |  |
+| `shorturl` | `string` | No |  |
+| `status` | `string` | No |  |
 
 ### Operations
 
@@ -100,7 +100,7 @@ local url_shortening = client:UrlShortening(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:UrlShortening():load({ id = "url_shortening_id" })
+local result, err = client:UrlShortening():load()
 ```
 
 ### Common Methods

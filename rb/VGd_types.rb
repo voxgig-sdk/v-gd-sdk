@@ -21,7 +21,7 @@ UrlShortening = Struct.new(
   keyword_init: true
 )
 
-# Match filter for UrlShortening#load (any subset of UrlShortening fields).
+# Request payload for UrlShortening#load.
 #
 # @!attribute [rw] shorturl
 #   @return [String, nil]

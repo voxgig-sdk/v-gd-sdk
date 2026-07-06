@@ -116,8 +116,8 @@ const url_shortening = client.UrlShortening()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `shorturl` | ``$STRING`` | No |  |
-| `status` | ``$STRING`` | No |  |
+| `shorturl` | `string` | No |  |
+| `status` | `string` | No |  |
 
 ### Operations
 
@@ -126,7 +126,7 @@ const url_shortening = client.UrlShortening()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.UrlShortening().load({ id: 'url_shortening_id' })
+const result = await client.UrlShortening().load()
 ```
 
 ### Common Methods

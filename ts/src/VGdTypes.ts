@@ -10,5 +10,8 @@ export interface UrlShortening {
   status?: string
 }
 
-export type UrlShorteningLoadMatch = Partial<UrlShortening>
+export interface UrlShorteningLoadMatch {
+  shorturl?: string
+  status?: string
+}
 

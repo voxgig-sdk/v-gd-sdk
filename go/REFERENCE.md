@@ -97,8 +97,8 @@ url_shortening := client.UrlShortening(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `shorturl` | ``$STRING`` | No |  |
-| `status` | ``$STRING`` | No |  |
+| `shorturl` | `string` | No |  |
+| `status` | `string` | No |  |
 
 ### Operations
 
@@ -107,7 +107,7 @@ url_shortening := client.UrlShortening(nil)
 Load a single entity matching the given criteria.
 
 ```go
-result, err := client.UrlShortening(nil).Load(map[string]any{"id": "url_shortening_id"}, nil)
+result, err := client.UrlShortening(nil).Load(nil, nil)
 ```
 
 ### Common Methods

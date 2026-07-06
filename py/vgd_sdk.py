@@ -221,7 +221,7 @@ class VGdSDK:
 
 
     def UrlShortening(self, data=None) -> "UrlShorteningEntity":
-        """Entity factory: client.UrlShortening().list({}) / client.UrlShortening().load({"id": ...})."""
+        """Entity factory: client.UrlShortening().list() / client.UrlShortening().load({"id": ...})."""
         from entity.url_shortening_entity import UrlShorteningEntity
         return UrlShorteningEntity(self, data)
 
