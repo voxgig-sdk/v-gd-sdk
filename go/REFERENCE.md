@@ -90,7 +90,8 @@ same parameters as `Direct()`.
 ## UrlShorteningEntity
 
 ```go
-url_shortening := client.UrlShortening(nil)
+urlShortening := client.UrlShortening(nil)
+fmt.Println(urlShortening.GetName()) // "url_shortening"
 ```
 
 ### Fields
@@ -108,6 +109,10 @@ Load a single entity matching the given criteria.
 
 ```go
 result, err := client.UrlShortening(nil).Load(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 ### Common Methods

@@ -6,9 +6,6 @@
     },
     "kit": {
       "config": {
-        "auth": {
-          "prefix": "Bearer"
-        },
         "docs_order": [
           "ts",
           "py",
@@ -245,14 +242,17 @@
           "url": "https://github.com/l0v3m0n3y/v_gd"
         },
         "description": "The V.gd API provides a simple interface for shortening URLs through its JavaScript library. It allows developers to create custom short links, track their usage, and integrate URL shortening capabilities into their applications.",
+        "meta_source": "https://www.freepublicapis.com",
         "servers": [
           {
             "description": "V.gd URL Shortener Service",
             "url": "https://v.gd"
           }
         ],
+        "summary": "The V.gd API provides a simple interface for shortening URLs through its JavaScript library.",
         "title": "V.gd API",
-        "version": "1.0.0"
+        "version": "1.0.0",
+        "website": "https://github.com/l0v3m0n3y/v_gd"
       },
       "option": {},
       "target": {
@@ -305,6 +305,9 @@
           },
           "name": "go-cli",
           "phase": {
+            "agentguide": {
+              "active": false
+            },
             "entity": {
               "active": false
             },
@@ -355,6 +358,9 @@
           },
           "name": "go-mcp",
           "phase": {
+            "agentguide": {
+              "active": false
+            },
             "entity": {
               "active": false
             },

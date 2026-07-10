@@ -15,9 +15,9 @@ main: {
           url: "https://v.gd"
         }
       ]
+      summary: "The V.gd API provides a simple interface for shortening URLs through its JavaScript library."
       title: "V.gd API"
       version: "1.0.0"
+      website: "https://github.com/l0v3m0n3y/v_gd"
     }
   }
-}
-

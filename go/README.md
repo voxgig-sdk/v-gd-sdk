@@ -50,12 +50,12 @@ import (
 func main() {
     client := sdk.New()
 
-    // Load a single urlshortening — the value is the loaded record.
-    urlshortening, err := client.UrlShortening(nil).Load(nil, nil)
+    // Load a single urlShortening — the value is the loaded record.
+    urlShortening, err := client.UrlShortening(nil).Load(nil, nil)
     if err != nil {
         panic(err)
     }
-    fmt.Println(urlshortening)
+    fmt.Println(urlShortening)
 }
 ```
 
@@ -135,13 +135,13 @@ Create a mock client for unit testing — no server required:
 ```go
 client := sdk.Test()
 
-urlshortening, err := client.UrlShortening(nil).Load(
+urlShortening, err := client.UrlShortening(nil).Load(
     nil, nil,
 )
 if err != nil {
     panic(err)
 }
-fmt.Println(urlshortening) // the returned mock data
+fmt.Println(urlShortening) // the returned mock data
 ```
 
 ### Use a custom fetch function
@@ -245,9 +245,9 @@ Check `err` first, then use the value directly (or the typed
 `...Typed` variants, which return the entity's model struct and a typed
 slice):
 
-    urlshortening, err := client.UrlShortening(nil).Load(nil, nil)
+    urlShortening, err := client.UrlShortening(nil).Load(nil, nil)
     if err != nil { /* handle */ }
-    // urlshortening is the returned record
+    // urlShortening is the returned record
 
 Only `Direct()` returns a response envelope — a `map[string]any` with
 `"ok"`, `"status"`, `"headers"`, and `"data"` keys.
@@ -272,7 +272,7 @@ API path: `/create.php`
 
 ### UrlShortening
 
-Create an instance: `url_shortening := client.UrlShortening(nil)`
+Create an instance: `urlShortening := client.UrlShortening(nil)`
 
 #### Operations
 
@@ -290,11 +290,11 @@ Create an instance: `url_shortening := client.UrlShortening(nil)`
 #### Example: Load
 
 ```go
-url_shortening, err := client.UrlShortening(nil).Load(nil, nil)
+urlShortening, err := client.UrlShortening(nil).Load(nil, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(url_shortening) // the loaded record
+fmt.Println(urlShortening) // the loaded record
 ```
 
 
