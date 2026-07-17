@@ -1,4 +1,4 @@
--- ProjectName SDK exists test
+-- VGd SDK exists test
 
 local sdk = require("v-gd_sdk")
 
